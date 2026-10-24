@@ -21,6 +21,12 @@ Después abrir Codex interactivo, usar `/hooks` para revisar los dos hooks, auto
 
 Opciones de modo documentadas: lite, full, ultra, off. Recomendamos **full** como estándar; ultra solo para cuestionar complejidad antes de una decisión, nunca para cambiar una SPEC aprobada ni eliminar controles. Los benchmarks upstream son para Claude Code y no garantizan reducción de tokens o QA en Codex.
 
+## Skills propias PingPongLaw (independientes del plugin Ponytail)
+
+Además de `pingponglaw`, la arquitectura incluye **seis skills de ley** `l1-kiss-ponytail`, `l2-antirruido`, `l3-antiparches`, `l4-diseno-humano`, `l5-verificacion-independiente`, `l6-anti-ping-pong` y dos adaptadores visuales `l4-anti-ui-slop`, `l4-ui-ux-pro-max`. **Estas instrucciones se almacenan en este repositorio**, pero la carga real depende del contexto/directorio del Codex local. Al comprobarlas, enumerar rutas detectadas y abrir por lo menos una por nombre. El plugin Ponytail upstream **no instala** estas ocho skills PingPongLaw ni garantiza que ChatGPT las conozca.
+
+Ver [arquitectura de skills](SKILLS_ARQUITECTURA.md). No ejecutar las ocho por defecto. El perfil `full` pertenece al plugin Ponytail, no es estado de nuestras leyes.
+
 ## Prueba obligatoria de carga y aplicación
 
 En un nuevo hilo de Codex, desde un checkout autorizado de PingPongLaw:
