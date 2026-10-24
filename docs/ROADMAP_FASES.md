@@ -6,6 +6,8 @@
 
 Un **canon único, ligero y verificable** de seis leyes, con L1 KISS + Ponytail, que ChatGPT consulte al iniciar una tarea técnica y que Codex pueda leer/aplicar en proyectos autorizados. Debe ahorrar complejidad, revisiones innecesarias y transferencias improductivas **sin recortar seguridad, calidad, diseño humano ni pruebas de aceptación**. No se construirá SaaS, base de datos, dashboard, telemetría ni servicio en segundo plano.
 
+**Detalle de implementación de skills:** [plan avanzado](ROADMAP_SKILLS_AVANZADO.md) — es un desglose operativo de estas mismas fases, no otra fuente normativa ni otra auditoría obligatoria.
+
 ## Estado y dependencias
 
 | Fase | Responsable prioritario | Producto verificable | Gate de salida | Estado |
@@ -13,6 +15,7 @@ Un **canon único, ligero y verificable** de seis leyes, con L1 KISS + Ponytail,
 | **F0. Investigación y procedencia** | ChatGPT | Ponytail fuente/licencia/SHA, comparación con leyes, límites de hooks y benchmark | G0: hechos respaldados, riesgos explícitos | **HECHO, revisión selectiva** |
 | **F1. Canon central** | ChatGPT | README, AGENTS, seis leyes, skill, guías | G1: en main, seis leyes en orden y referencias correctas | **HECHO EN MAIN** |
 | **F1.1. Endurecimiento focal** | ChatGPT | Eliminar referencias obsoletas, corregir CI, pruebas negativas y links, actualizar plan | G1.1: tests focales + CI mismo HEAD; PR revisable | **HECHO EN MAIN** (CI de PR y main aprobado) |
+| **F1.2. Skills por ley + dos adaptadores L4** | ChatGPT: 9 skills enrutadas, fuentes externas fijadas y tests | G1.2: metadatos, rutas, router y regresión CI sobre SHA | **EN PR**, no cargadas en PC |
 | **F2. Piloto ChatGPT real** | ChatGPT | Evidencia de lectura del canon exacto y 3 casos de uso (prompt, implementación focal, entrega) | G2: mostrar consulta real, decisiones técnicas, límites y pruebas sin ciclos extra | **PENDIENTE COMO CONJUNTO** |
 | **F3. Codex Windows / Ponytail oficial** | Codex local; ChatGPT dirige | Inventario CLI/Node; plugin oficial y skills; revisión explícita de hooks; prueba de sesión limpia | G3: versión instalada, lectura de L1–L6, hooks autorizados/NO_CONFIADOS de forma explícita, informe MD/ZIP si procede | **NO VERIFICADO: no hay acceso al PC** |
 | **F4. Piloto downstream** | ChatGPT + Codex si hace falta | 1 proyecto con canon y normas específicas reconciliadas; prueba de cambio real acotado | G4: lectura aplicable, cambio funcional probado, Ley 5, sin suprimir AGENTS previos | **PENDIENTE** |
