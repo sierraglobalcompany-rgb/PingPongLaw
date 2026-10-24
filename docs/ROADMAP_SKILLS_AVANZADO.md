@@ -20,7 +20,7 @@ No base de datos, dashboard, agentes en segundo plano, telemetría obligatoria, 
 |---|---|---|---|---|
 | **F0 — Baseline/estudio** | SHA real del canon y de las 3 fuentes; licencias, código/skills, pruebas y riesgos | ChatGPT/GitHub | B0: inventario, contratos, fuentes vinculadas; alcance declarado | **HECHO documental** |
 | **F1 — Canon de seis leyes** | Mantener fuente única y entradas claras | ChatGPT | B1: L1–L6, AGENTS y CI en main | **HECHO previamente** |
-| **F1.2 — Skills modulares** | 6 skills + 2 adaptadores UX + router; selección sin activar todo | ChatGPT | B1.2: 9 SKILL, nombres únicos, metadatos, enlaces, sin contenido upstream copiado, tests positivos y negativos; CI PR | **IMPLEMENTADO EN RAMA; PENDIENTE CI/MERGE** |
+| **F1.2 — Skills modulares** | 6 skills + 2 adaptadores UX + router; selección sin activar todo | ChatGPT | B1.2: 9 SKILL, nombres únicos, metadatos, enlaces, sin contenido upstream copiado, tests positivos y negativos; CI PR | **INTEGRADO EN MAIN**, gate estructural aprobado; piloto de uso pendiente |
 | **F2 — Uso de ChatGPT** | Consultar el canon/skills por GitHub y realizar tarea real sin microdelegación | ChatGPT | B2: 3 casos reproducibles, logs/SHAs y resultado por caso, no solo resumen | **PENDIENTE PILOTO** |
 | **F3 — Codex Windows** | Instalar plugin oficial Ponytail de manera controlada; comprobar Node/CLI, hooks y skills propias | Codex local bajo plan ChatGPT | B3: versión/procedencia y presencia real, inspección de hooks, activación explícita, prueba sesión nueva, informe MD y ZIP si hay evidencia | **PENDIENTE PC** |
 | **F4 — Piloto de aplicación** | Integración sin duplicar instrucciones en un repo representativo (AlquilaPro como candidato, no automático) | ChatGPT + Codex cuando haga falta | B4: lectura real, 1 implementación focal, regressión, UX si aplica, QA Ley 5 y 0 nuevos conflictos | **PENDIENTE** |
@@ -111,4 +111,4 @@ Indicadores por **tarea comparable**, sin recopilar datos privados ni crear tabl
 
 Al final de cada fase: `FASE | REPO/SHA | HECHO_CHATGPT | CODEX_NEED | L1–L6 | TESTS | LIMITACIONES | NEXT/NINGUNO` en un informe breve si no hay razones para uno largo.
 
-**NEXT único de esta implementación:** comprobar los tests y el PR de F1.2. Una vez pasado, usar las skills realmente desde ChatGPT en el piloto F2; instalación de Ponytail oficial en Codex local F3 sigue en carril independiente, **no** bloquea avance ChatGPT.
+**F1.2 cerrado documentalmente** mediante PR #3 integrado y CI (13 pruebas). **NEXT: F2**, comprobar lectura y selección efectiva de skills en tres tareas representativas, sin abrir otra auditoría forense. F3 plugin Codex local permanece independiente hasta observar instalación y hooks.
