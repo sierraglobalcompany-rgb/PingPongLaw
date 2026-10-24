@@ -3,7 +3,7 @@ name: l3-antiparches
 description: Ley 3 Antiparches. Investigar regresiones, workaround sobre workaround y errores persistentes; localizar causa raíz y cerrar todos los consumidores, sin añadir parches acumulativos.
 ---
 # L3 — Antiparches
-**Canon:** ../../../../docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (L3).
+**Canon:** docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (L3).
 ## Secuencia
 1. Describir síntoma, entrada, resultado esperado, resultado observado y alcance; no inventar reproducción.
 2. Rastrear flujo real `entrada → validación/rol → transformación → persistencia/UI → salida` y revisar callers directos/dinámicos.
