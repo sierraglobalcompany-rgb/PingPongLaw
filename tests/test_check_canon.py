@@ -70,6 +70,14 @@ class CanonContractTests(unittest.TestCase):
         self.write('README.md', (self.root / 'README.md').read_text() + example)
         self.assertEqual(check(self.root), [])
 
+    def test_unregistered_skill_is_rejected(self):
+        unknown = '.agents/skills/l7-duplicated-logic/SKILL.md'
+        file = self.root / unknown
+        file.parent.mkdir(parents=True, exist_ok=True)
+        self.write(unknown, '---\nname: l7-duplicated-logic\ndescription: invented\n---\n# Skill\n')
+        self.assertTrue(any('unregistered skill: l7-duplicated-logic' in x
+                            for x in check(self.root)))
+
     def test_missing_individual_skill(self):
         (self.root / '.agents/skills/l2-antirruido/SKILL.md').unlink()
         self.assertTrue(any('missing or empty' in x for x in check(self.root)))
