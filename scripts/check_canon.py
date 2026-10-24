@@ -67,6 +67,13 @@ def check(root=ROOT):
     if agents and 'docs/SKILLS_ARQUITECTURA.md' not in agents:
         errors.append('AGENTS missing skills architecture reference')
 
+    # Discover drift as well as checking known skills: an extra skill may bypass routing.
+    directory = root / '.agents/skills'
+    if directory.is_dir():
+        discovered = {p.parent.name for p in directory.glob('*/SKILL.md') if p.is_file()}
+        for extra in sorted(discovered.difference(ALL_SKILLS)):
+            errors.append(f'unregistered skill: {extra}')
+
     names_seen = set()
     for name in ALL_SKILLS:
         path = f'.agents/skills/{name}/SKILL.md'
