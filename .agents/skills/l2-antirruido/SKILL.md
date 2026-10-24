@@ -3,7 +3,7 @@ name: l2-antirruido
 description: Ley 2 Antirruido. Detectar redundancia real en código, módulos, documentación, pruebas y procesos; fusionar o eliminar solo con evidencia de consumidores y regresiones.
 ---
 # L2 — Antirruido
-**Canon:** ../../../../docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (L2).
+**Canon:** docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (L2).
 ## Operar
 - Delimitar objeto: duplicaciones de helpers, flujos, consultas, config, documentos, reportes o pruebas. No confundir similitud visual con equivalencia de comportamiento.
 - Inventariar definiciones y consumidores: importaciones, rutas, DI, nombres dinámicos, pruebas, fixtures, cron, pipelines, migraciones, versiones y referencias externas.
