@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.check_canon import CANON, SKILL, REQUIRED, check
+from scripts.check_canon import CANON, SKILL, REQUIRED, ALL_SKILLS, SKILL_DOCS, check
 
 
 class CanonContractTests(unittest.TestCase):
@@ -19,10 +19,17 @@ class CanonContractTests(unittest.TestCase):
             file.write_text('present\n', encoding='utf-8')
         laws = '\n'.join(f'## L{i} — Law {i}' for i in range(1, 7))
         self.write(CANON, laws + '\nhttps://github.com/DietrichGebert/ponytail\n')
-        self.write(SKILL, '---\nname: pingponglaw\ndescription: valid\n---\n# Skill\n')
-        self.write('AGENTS.md', f'Read {CANON} and {SKILL}\n')
+        for name in ALL_SKILLS:
+            skill_path = f'.agents/skills/{name}/SKILL.md'
+            body = (f'---\\nname: {name}\\ndescription: valid\\n---\\n'
+                    f'# Skill\\nSee {CANON}\\n')
+            self.write(skill_path, body.replace('\\n', '\n'))
+        self.write(SKILL, (self.root / SKILL).read_text() +
+                   '\n' + ' '.join(ALL_SKILLS) + '\n')
+        self.write('AGENTS.md', f'Read {CANON} and {SKILL} and docs/SKILLS_ARQUITECTURA.md\n')
         self.write('README.md', ''.join(f'[Doc]({path})\n' for path in (
-            CANON, 'docs/CHATGPT_START.md', 'docs/CODEX_INSTALL.md', 'docs/ROADMAP_FASES.md')))
+            CANON, 'docs/CHATGPT_START.md', 'docs/CODEX_INSTALL.md',
+            'docs/ROADMAP_FASES.md', *SKILL_DOCS)))
 
     def write(self, path, text):
         (self.root / path).write_text(text, encoding='utf-8')
@@ -62,6 +69,26 @@ class CanonContractTests(unittest.TestCase):
         example = '\n' + chr(96) * 3 + 'markdown\n[Example](not-a-file.md)\n' + chr(96) * 3 + '\n'
         self.write('README.md', (self.root / 'README.md').read_text() + example)
         self.assertEqual(check(self.root), [])
+
+    def test_missing_individual_skill(self):
+        (self.root / '.agents/skills/l2-antirruido/SKILL.md').unlink()
+        self.assertTrue(any('missing or empty' in x for x in check(self.root)))
+
+    def test_wrong_skill_name(self):
+        file = self.root / '.agents/skills/l3-antiparches/SKILL.md'
+        self.write('.agents/skills/l3-antiparches/SKILL.md', file.read_text().replace(
+            'name: l3-antiparches', 'name: l2-antirruido'))
+        self.assertTrue(any('wrong or duplicate skill name' in x for x in check(self.root)))
+
+    def test_router_missing_design_adapter(self):
+        txt = (self.root / SKILL).read_text()
+        self.write(SKILL, txt.replace('l4-ui-ux-pro-max', ''))
+        self.assertTrue(any('router missing subskill' in x for x in check(self.root)))
+
+    def test_skill_without_canon_reference(self):
+        self.write('.agents/skills/l6-anti-ping-pong/SKILL.md',
+                   '---\nname: l6-anti-ping-pong\ndescription: valid\n---\n# Skill\n')
+        self.assertTrue(any('skill has no canon link' in x for x in check(self.root)))
 
 
 if __name__ == '__main__':
