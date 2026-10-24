@@ -2,6 +2,8 @@
 name: l4-ui-ux-pro-max
 description: Adaptador de UI UX Pro Max. Usar solo para necesidades visuales sobre accesibilidad, interacción, responsive, tipografía, formularios, gráficos o implementación dependiente del stack.
 ---
+**Canon vinculante:** `docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md` (sección L4); la fuente externa es complementaria.
+
 # L4B — UI UX Pro Max (fuente externa; guía complementaria)
 **Origen:** `nextlevelbuilder/ui-ux-pro-max-skill@d14efff8ed1faa4187f004f79926f428c8074ec7`, `.claude/skills/ui-ux-pro-max/SKILL.md` y `references/quick-reference.md`. Licencia del repo MIT. Esta adaptación **no instala** las tablas, búsquedas ni ejecutables del upstream.
 
