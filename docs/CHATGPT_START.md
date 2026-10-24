@@ -19,6 +19,10 @@ Origen a consultar: https://github.com/sierraglobalcompany-rgb/PingPongLaw y el 
 | Verifica entrega de Codex | L5 | Confrontar reporte, diff, CI, artefactos, SHA y tests; no reemitir su NEXT automáticamente |
 | Instala o actualiza las leyes | REGLAS | Verificar canon, AGENTS, conflictos, permisos; diff mínimo en repo autorizado, comprobar lectura real y publicación |
 
+## Selección de skills antes de trabajar
+
+Consultar [arquitectura de skills](SKILLS_ARQUITECTURA.md). Tras abrir el canon, usar `.agents/skills/pingponglaw/SKILL.md` para elegir solamente la ley aplicable. Cada ley tiene su skill; diseño usa dos adaptadores externos cuando aportan evidencia, y no dos auditorías completas por rutina. La lectura desde GitHub debe ser real, no inferida. Una skill documentada NO garantiza que el plugin esté instalado.
+
 ## Cinco preguntas previas — sin burocracia
 
 1. ¿Es necesaria esta tarea o ya está completa?

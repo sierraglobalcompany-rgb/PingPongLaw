@@ -23,6 +23,14 @@
 
 **Modo por defecto:** aplicar las seis leyes como criterio de trabajo sin ejecutar auditorías adicionales de oficio. El canon se debe leer efectivamente en la sesión; enlazar GitHub no equivale a inyección automática. Las comprobaciones CI validan documentación, no que el plugin esté instalado ni que un proyecto funcione.
 
+## Skills de aplicación y auditoría selectiva
+
+- [Arquitectura de skills y selector por intención](docs/SKILLS_ARQUITECTURA.md)
+- [Fuentes Ponytail / Anti UI Slop / UI UX Pro Max](docs/FUENTES_EXTERNAS.md)
+- [Plan avanzado por fases](docs/ROADMAP_SKILLS_AVANZADO.md)
+
+Cada ley tiene una skill dentro de `.agents/skills/`; L4 tiene además dos adaptadores separados. `pingponglaw` selecciona, no ejecuta todas. **Presencia en GitHub ≠ instalación del plugin ≠ aplicación real.**
+
 ## Cómo usarlo
 
 - **ChatGPT:** abrir este repositorio, consultar `docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md` y seguir `docs/CHATGPT_START.md` antes de proponer implementación o delegación.
