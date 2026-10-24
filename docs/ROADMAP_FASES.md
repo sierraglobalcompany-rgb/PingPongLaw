@@ -1,46 +1,59 @@
-# PingPongLaw — ROADMAP por fases con compuertas de aceptación
+# PingPongLaw — Plan maestro de implementación por fases (V2)
 
-**Meta:** un sistema mínimo, compartido y verificable de seis leyes que ChatGPT lee desde GitHub y Codex utiliza con su skill; Ponytail 5.3.2 fortalece L1. No es una app SaaS, no requiere BD, frontend ni backend propios. Por Ley 2 no se construyen dashboards de gobierno sin necesidad demostrada.
+**Fuente del estado:** repositorio real, no este texto por sí solo. **BASE_AUDITADA:** `main@9fefcf72f1629af116c3b759202d930c0ada8840`. La rama de mejora de esta auditoría añade pruebas y documentación; **no equivale a una instalación del plugin Codex**.
 
-| Fase | Qué se hace y quién | Criterio de cierre | Estado inicial |
-|---|---|---|---|
-| **F0. Fuente y riesgos** | ChatGPT: comprobar PingPongLaw, Ponytail oficial, SHA, MIT, instalación Codex y límites de hooks | Identidad/fuente/SHA registrados y decisiones sobre integración | HECHO: investigación documental |
-| **F1. Canon universal** | ChatGPT: publicar README, AGENTS, L1–L6, skill adaptada, guías y roadmap en rama revisable | Los seis textos están presentes y unidos sin duplicar; diff verificable, sin datos ni scripts ejecutados | EN PREPARACIÓN / rama de trabajo |
-| **F2. Uso real desde ChatGPT** | ChatGPT: consultar versión exacta del canon por GitHub y aplicar a casos concretos | 3 pilotos: revisión de prompt sin auditoría extra; cambio técnico focal; evaluación de entrega; evidencias de fuente y salida | PENDIENTE |
-| **F3. Instalación global en Codex local** | Codex en PC: preflight CLI/Node, fuente oficial, instalar plugin, revisar y autorizar hooks, reiniciar sesión | Identidad y versión verificadas, skills visibles, hooks aprobados conscientemente, prueba de invocación, informe MD y ZIP si hay anexos | PENDIENTE acceso al PC |
-| **F4. Piloto en 1 proyecto** | ChatGPT + Codex: reconciliar AlquilaPro u otro repo representativo y el PR previo de Ley 1 sin duplicar AGENTS | PR/ruta correctos, prueba de lectura y flujo completo, QA focal, sin romper reglas propias | PENDIENTE |
-| **F5. Propagación controlada** | ChatGPT en GitHub: comprobar base/branch e instrucciones de cada repositorio; preparar cambios mínimos por repo | Matriz CANON_VERIFICADO / EN_PR / INSTALADO / CONFLICTO / SIN_ACCESO; sin merges automáticos | PENDIENTE |
-| **F6. Auditoría de impacto y mantenimiento** | Solo cuando una razón concreta lo justifique: comparar cambios, ahorro real y regresiones; registrar upgrades upstream por SHA | Métricas de 2-3 casos comparables, no benchmarks extrapolados; 0 ciclos de auditoría sin finalidad | PENDIENTE |
+## Resultado final buscado
 
-## Responsables y autorización
+Un **canon único, ligero y verificable** de seis leyes, con L1 KISS + Ponytail, que ChatGPT consulte al iniciar una tarea técnica y que Codex pueda leer/aplicar en proyectos autorizados. Debe ahorrar complejidad, revisiones innecesarias y transferencias improductivas **sin recortar seguridad, calidad, diseño humano ni pruebas de aceptación**. No se construirá SaaS, base de datos, dashboard, telemetría ni servicio en segundo plano.
 
-- ChatGPT es dueño del plan, el diagnóstico, la elección técnica y todo lo que sus herramientas puedan ejecutar. Codex solo es necesario para instalación en el PC, herramientas nativas o acciones no accesibles a ChatGPT.
-- La instalación del plugin Ponytail oficial puede instalar código ejecutable Node en hooks. **No aceptar hooks por defecto**, revisarlos y autorizarlos por separado en una sesión local consciente.
-- Las modificaciones remotas de aplicaciones distintas de PingPongLaw, merge, deploy y cambios de seguridad exigen alcance/permiso específico. Los 14 PRs Ponytail creados previamente en repos de aplicaciones no están fusionados y deben reconciliarse en F4/F5.
+## Estado y dependencias
 
-## Gates comprobables
+| Fase | Responsable prioritario | Producto verificable | Gate de salida | Estado |
+|---|---|---|---|---|
+| **F0. Investigación y procedencia** | ChatGPT | Ponytail fuente/licencia/SHA, comparación con leyes, límites de hooks y benchmark | G0: hechos respaldados, riesgos explícitos | **HECHO, revisión selectiva** |
+| **F1. Canon central** | ChatGPT | README, AGENTS, seis leyes, skill, guías | G1: en main, seis leyes en orden y referencias correctas | **HECHO EN BASE**; mejora de pruebas en revisión |
+| **F1.1. Endurecimiento focal** | ChatGPT | Eliminar referencias obsoletas, corregir CI, pruebas negativas y links, actualizar plan | G1.1: tests focales + CI mismo HEAD; PR revisable | **EN ESTA RAMA** hasta verificación |
+| **F2. Piloto ChatGPT real** | ChatGPT | Evidencia de lectura del canon exacto y 3 casos de uso (prompt, implementación focal, entrega) | G2: mostrar consulta real, decisiones técnicas, límites y pruebas sin ciclos extra | **PENDIENTE COMO CONJUNTO** |
+| **F3. Codex Windows / Ponytail oficial** | Codex local; ChatGPT dirige | Inventario CLI/Node; plugin oficial y skills; revisión explícita de hooks; prueba de sesión limpia | G3: versión instalada, lectura de L1–L6, hooks autorizados/NO_CONFIADOS de forma explícita, informe MD/ZIP si procede | **NO VERIFICADO: no hay acceso al PC** |
+| **F4. Piloto downstream** | ChatGPT + Codex si hace falta | 1 proyecto con canon y normas específicas reconciliadas; prueba de cambio real acotado | G4: lectura aplicable, cambio funcional probado, Ley 5, sin suprimir AGENTS previos | **PENDIENTE** |
+| **F5. Expansión** | ChatGPT/GitHub + Codex local | Matriz de repos, PRs precisos, conflictos resueltos, rollout secuencial | G5: cada repo con estado real y trazabilidad SHA; ningún merge automático | **PENDIENTE** |
+| **F6. Evaluación/mantenimiento** | ChatGPT, verificador distinto si procede | 2–3 casos comparables: correctitud, alcance, LOC, tiempo/transferencias y defectos | G6: datos reales sin extrapolar benchmark upstream; decisiones de mantener/revertir | **PENDIENTE** |
 
-**G0**: upstream Ponytail `09c434ab73ca43761c5d8b0c5d341926c2fba710`, versión 5.3.2, MIT, límites del benchmark y del plugin documentados.
+**Dependencias:** F2 y F3 pueden avanzar de forma independiente tras G1.1; F4 requiere canon accesible y un agente que demuestre su lectura, pero **no necesita activar hooks** si se valida el modo skill/documental. F5 requiere G4. F6 requiere al menos casos aplicados. Evitar múltiples auditorías previas a un gate ya satisfecho.
 
-**G1**: PingPongLaw contiene 6 leyes canónicas, AGENTS apunta a ruta existente, skill con frontmatter válido, README enlaza documentación, sin otras leyes inventadas. Comprobar SHA/árbol y diff antes del merge. El PR no equivale a instalación local.
+## Gates concretos
 
-**G2**: ChatGPT lee el canon remoto realmente cuando el usuario lo solicita; si no hay acceso, declara NO_LEIDO. No asumir carga automática.
+**G0 — Fuentes:** registrar `DietrichGebert/ponytail@09c434ab73ca43761c5d8b0c5d341926c2fba710`, v5.3.2/MIT, distinguir skill estática de plugin Node y métricas publicadas por su autor. No afirmar cobertura total del código upstream.
 
-**G3**: un Codex en el equipo usuario comprueba CLI, Node, plugin instalado y prueba invocación. La configuración/trust de hooks ha sido confirmada en esa instancia; si no, HOOKS_NOT_VERIFIED.
+**G1/G1.1 — Canon:** `python3 scripts/check_canon.py` y `python3 -m unittest discover -s tests -v` con éxito en HEAD exacto, enlaces locales comprobados, seis leyes presentes, skill actual, workflow GitHub terminado. Esto verifica **estructura**, no carga o semántica completa del agente.
 
-**G4**: cada proyecto piloto conserva sus AGENTS/SPEC/datos/pruebas y no recibe scripts globales copiados a su código.
+**G2 — ChatGPT:** prueba sobre una tarea real con `REPO/SHA_LEIDO`, aplicación observable de L1–L6, decisiones tomadas/edición directa cuando sea posible, pruebas pertinentes y ningún prompt artificial. Usar `docs/VALIDACION_OPERATIVA.md`. Cuando ChatGPT no pueda consultar GitHub, adjuntar el canon y registrar la limitación.
 
-**G5**: para expandir, matriz por repositorio y comparación base/HEAD; no tocar ramas concurrentes ni hacer merges silenciosos.
+**G3 — Codex:** instalación oficial `codex plugin marketplace add DietrichGebert/ponytail` y `codex plugin add ponytail@ponytail` **solo en PC autorizado y tras preflight de comandos**. Antes de confiar en hooks, revisarlos junto con Node y permisos; nunca cambiar ajustes globales por inferencia. Cargar canon, probar skill y comprobar estado de hooks por observación. El perfil `full` es preferido; no usar `ultra` para cuestionar contratos aprobados.
 
-**G6**: medir simplicidad con diff y contratos intactos, no solo reducción de líneas. Un cambio menor que rompa seguridad, accesibilidad o funcionalidades NO cumple Ley 1.
+**G4 — Piloto:** escoger un repo representativo (AlquilaPro solo como candidato, no autorización automática), leer todas sus reglas y PRs existentes. No crear otra copia del canon ni otro PR si hay uno adecuado; actualizar el existente con evidencia. Medir que el agente realiza trabajo real, no solo explica.
 
-## Política de selección de auditorías
+**G5 — Multi-repo:** procesar por prioridad/riesgo, identificar HEAD y ramas reales, conflictos de `AGENTS.md` y políticas de ZIP. Estados por repo: `NO_APLICA`, `EN_PR`, `LEYES_PRESENTES`, `CODEX_READ_VERIFIED`, `CONFLICTO`, `NO_ACCESO`. Un PR abierto **no equivale a reglas instaladas en main**. Ramas con WIP y repos vacíos no se tocan sin decisión específica.
 
-1. Sin auditoría adicional para tareas pequeñas con contrato claro y QA focal suficiente.
-2. Revisar diff con Ponytail Review cuando haya riesgo o solicitud: leer consumidores fuera del diff.
-3. Ponytail Audit para diagnóstico amplio cuando se solicita o hay riesgo sistémico. Su límite de presentación de 20 hallazgos **no permite ocultar P0/P1** de una forense más exhaustiva.
-4. Auditoría forense L1–L6 solo cuando usuario o riesgo alto lo justifican. Para L4 usar primero Anti UI Slop y después UI UX Pro Max, vinculados con SPEC/mockup del proyecto y evidencia visual real.
+**G6 — Medición:** corrección/seguridad primero; eficiencia segundo. Comparar tareas equivalentes, medir transfers ChatGPT↔Codex, QA ejecutada, defectos reales y diff neto; **no exigir reducción fija de líneas** y no fingir el ahorro de tokens atribuido a Ponytail por su autor.
 
-## Bloqueos y NEXT
+## Política anti-ping-pong para este plan
 
-Se puede completar F1 antes de F3. La ausencia del PC NO bloquea documentación y uso ChatGPT. **NEXT tras G1:** realizar el piloto de lectura efectiva en ChatGPT; Codex local será un único lote instalador y de verificación, no una cadena de microtareas.
+- La instalación global es **un lote local**: preflight → fuente → inspección hooks → instalación autorizada → comprobación skills/hook → evidencia → informe. Un error recuperable no termina todo, pero secretos, permisos y escritura destructiva siguen bloqueando acciones riesgosas.
+- **Auditoría proporcional**: sin nueva auditoría si ya hay evidencia suficiente; chequeo focal por delta; revisión Ponytail de diff cuando tenga utilidad; auditoría forense completa solo por solicitud/riesgo transversal.
+- Antes de enviar Codex: `HECHO_CHATGPT`, `LIMITACION_REAL`, `OBJETIVO_CODEX`, `GATE_CIERRE`. No crear un prompt por un import o por un solo comando.
+- Antes de PASS: Ley 5 separa resultados de CI y pruebas locales de la aceptación de funcionamiento, UX y permisos.
+
+## Riesgos y rollback
+
+1. **Carga del canon en ChatGPT no automática:** usar URL/adjunto y demostrar lectura. Ningún cambio en PingPongLaw puede obligar a otros chats a leerlo sin conexión.
+2. **Hooks Node:** código de terceros ejecutado en sesión; desactivar/remover por procedimiento upstream, preservar el canon independiente del plugin.
+3. **Reglas locales conflictivas:** fusionar solo cláusulas faltantes; evitar reemplazos globales en 17 repos.
+4. **Canon demasiado largo:** `AGENTS.md` sigue siendo índice breve; leer la sección relevante y verificar seis IDs en inicio/cierre sin imprimir 48 KB en cada turno. Reducir el documento canónico solo cuando se compruebe equivalencia completa.
+5. **CI engañoso:** el comprobador estructural y sus pruebas negativas no afirman que Codex ejecutó la skill o que un ERP pasó sus tests.
+6. **Licencia MIT:** código sustancial copiado de Ponytail debería preservar avisos; preferir adaptación y enlaces.
+7. **Rollback:** revertir el PR de F1.1 si falla; no altera runtime. No borrar comentarios, bases ni PRs ajenos para simplificar.
+
+## NEXT
+
+**Cerrar G1.1:** confirmar CI y pruebas en el SHA de esta rama. Después **F2**: piloto de lectura/uso del canon con ChatGPT, sin crear otra auditoría forense. F3 queda disponible en paralelo cuando haya Codex local autorizado.
