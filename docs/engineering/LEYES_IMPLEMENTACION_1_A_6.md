@@ -73,7 +73,7 @@ Cuando dos fuentes autorizadas sean incompatibles: registrar `CONFLICTO_ID + fue
 - **Review:** en PR/cambio de riesgo o revisión solicitada; seguir llamadas/consumidores y detectar bug, datos, seguridad, concurrencia y bloat; no sustituye QA de L5.
 - **Audit:** cuando se solicita examen del proyecto o hay riesgo transversal concreto; la auditoría extensa de este maestro conserva inventario, cobertura, hallazgos y fuentes, **no oculta P0/P1** aunque la skill oficial sugiera resumen máximo de 20.
 - **Modo recomendado `full`.** `ultra` puede cuestionar sobreingeniería, pero **no deroga autorizaciones, SPEC, contratos, permisos ni decisiones aprobadas**. No activar hooks o instaladores externos en silencio.
-- **Fuente principal y archivo:** `https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/skills/ponytail/SKILL.md`. Complemento de proyecto preferido: `.agents/skills/kiss-ponytail/SKILL.md` si está realmente instalado. El plugin de Codex se instala **una vez por entorno de usuario**, no copiando todo el repositorio en cada app.
+- **Fuente principal y archivo:** `https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/skills/ponytail/SKILL.md`. Complemento de proyecto preferido: `.agents/skills/pingponglaw/SKILL.md` si está realmente instalado. El plugin de Codex se instala **una vez por entorno de usuario**, no copiando todo el repositorio en cada app.
 
 **Prueba L1:** `necesidad → alcance y consumidores → escalón elegido y alternativa → cambio mínimo completo → pruebas y regresión → límites reales`. Si falta el comportamiento autorizado, seguridad o evidencia obligatoria, NO cumple L1 aunque el diff sea pequeño.
 
@@ -400,7 +400,7 @@ Si **hay acceso autorizado para escribir** en la rama/worktree del proyecto y la
 - `PROMPT_MAESTRO_LEY_5_AUDITOR_INDEPENDIENTE_V2_0.md` (L5: gates A/B, evidencias, falsos PASS e independencia real).
 - `LEY_6_ANTI_PING_PONG_UNIVERSAL_V2_0_AUDITADA.md` (L6: detector PP-01..PP-08, autonomía A/B/C y STOP_GLOBAL, entrega MD/ZIP).
 - `PROMPT_MAESTRO_AUDITOR_FORENSE_PRE_CODEX_LUNA_V5_LEY6_AUDITADO.md` (coordinación y diez pasadas pre-Codex).
-- **L1–L3:** sus definiciones y procedimientos se consolidaron de la **redacción coincidente** de las cuatro fuentes anteriores; no se encontró entre los archivos proporcionados aquí un documento individual que establezca versiones únicas de L1, L2 o L3. Esta V1 las **desarrolla** sin afirmar que haya leído originales inexistentes en el alcance.
+- **L1–L3:** sus definiciones y procedimientos se consolidaron de la **redacción coincidente** de las cuatro fuentes anteriores; no se encontró entre los archivos proporcionados aquí un documento individual que establezca versiones únicas de L1, L2 o L3. La redacción base de este maestro las **desarrolló** sin afirmar que haya leído originales inexistentes en el alcance.
 
 **Fuentes técnicas contrastadas:**
 
@@ -420,7 +420,7 @@ Si **hay acceso autorizado para escribir** en la rama/worktree del proyecto y la
 
 **Instalación real de Codex:** requiere terminal Codex en el equipo, `codex plugin marketplace add DietrichGebert/ponytail` y `codex plugin add ponytail@ponytail`; luego revisión/trust manual de `/hooks`, disponibilidad de `node` y nueva sesión, sujeto a compatibilidad de la versión instalada. ChatGPT no debe afirmar que lo ejecutó por citar los comandos. Los hooks ejecutan Node.js, inspeccionan el proyecto y escriben estado local; no confiarlos a ciegas.
 
-**Instalación por repositorio:** preferir una skill local ligera en `.agents/skills/kiss-ponytail/SKILL.md` **o un contrato L1 equivalente ya presente**, y una referencia breve en `AGENTS.md` sin duplicar canones. No insertar en `main` o PR de terceros sin revisión del proyecto, su rama y autorización. La integración escrita en GitHub **no prueba** que la skill local se cargó en el Codex del PC. Una prueba de arranque con lectura identificada del canon es necesaria para afirmar activación.
+**Instalación por repositorio:** preferir una skill local ligera en `.agents/skills/pingponglaw/SKILL.md` **o un contrato L1 equivalente ya presente**, y una referencia breve en `AGENTS.md` sin duplicar canones. No insertar en `main` o PR de terceros sin revisión del proyecto, su rama y autorización. La integración escrita en GitHub **no prueba** que la skill local se cargó en el Codex del PC. Una prueba de arranque con lectura identificada del canon es necesaria para afirmar activación.
 
 **Continuidad de las seis leyes:** L2, L3, L4, L5 y L6 no quedan subordinadas a Ponytail. Las cifras de benchmark upstream son **resultados declarados por su autor y limitados a Claude Code**; nuestro estándar requiere pruebas reales por proyecto/stack antes de atribuir ahorros o mejora de calidad a Codex.
 

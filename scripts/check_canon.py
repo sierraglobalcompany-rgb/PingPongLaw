@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small stdlib-only structural check for PingPongLaw; not an audit of applications."""
+"""Check PingPongLaw's durable entrypoints, not execution of AI agents."""
 from pathlib import Path
 import re
 import sys
@@ -7,42 +7,90 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 CANON = 'docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md'
 SKILL = '.agents/skills/pingponglaw/SKILL.md'
-REQUIRED = [
+REQUIRED = (
     'README.md', 'AGENTS.md', CANON, SKILL,
-    'docs/ROADMAP_FASES.md', 'docs/CHATGPT_START.md',
-    'docs/CODEX_INSTALL.md', 'docs/PONYTAIL_RESEARCH.md',
-    'docs/INTEGRACION_REPOS.md',
-]
+    'docs/CHATGPT_START.md', 'docs/CODEX_INSTALL.md',
+    'docs/INTEGRACION_REPOS.md', 'docs/PONYTAIL_RESEARCH.md',
+    'docs/ROADMAP_FASES.md', 'docs/VALIDACION_OPERATIVA.md',
+    'scripts/check_canon.py', '.github/workflows/verify-canon.yml',
+)
+LINK = re.compile(r'(?<!!)\[[^\]]*\]\(([^)]+)\)')
+HEAD = re.compile(r'^## L([1-6])\s+[—-]', re.MULTILINE)
 
-def main() -> int:
+
+def without_code_fences(s):
+    """Example links in fenced blocks are not navigational references."""
+    return re.sub(r'(?ms)^\s*(\x60{3}|~~~)[^\n]*\n.*?^\s*\1[^\n]*$', '', s)
+
+
+def check(root=ROOT):
+    root = Path(root).resolve()
     errors = []
+    texts = {}
     for path in REQUIRED:
-        f = ROOT / path
-        if not f.is_file() or f.stat().st_size == 0:
+        target = root / path
+        if not target.is_file() or not target.stat().st_size:
             errors.append(f'missing or empty: {path}')
-    if (ROOT / CANON).is_file():
-        text = (ROOT / CANON).read_text(encoding='utf-8')
-        found = re.findall(r'(?m)^## L([1-6])\s+[—-]', text)
-        if found != list('123456'):
-            errors.append(f'expected exactly ordered L1-L6 headings, found {found}')
-        if 'DietrichGebert/ponytail' not in text:
-            errors.append('source Ponytail reference missing from canon')
-    if (ROOT / SKILL).is_file():
-        txt = (ROOT / SKILL).read_text(encoding='utf-8')
-        if not txt.startswith('---\n') or 'name: pingponglaw' not in txt:
-            errors.append('skill frontmatter not valid')
-    if (ROOT / 'AGENTS.md').is_file():
-        txt = (ROOT / 'AGENTS.md').read_text(encoding='utf-8')
-        for path in (CANON, SKILL):
-            if path not in txt:
-                errors.append(f'AGENTS missing reference to {path}')
+        elif target.suffix in ('.md', '.py', '.yml'):
+            try:
+                texts[path] = target.read_text(encoding='utf-8')
+            except UnicodeError:
+                errors.append(f'not UTF-8: {path}')
+
+    canon = texts.get(CANON, '')
+    if canon:
+        ids = HEAD.findall(without_code_fences(canon))
+        if ids != list('123456'):
+            errors.append(f'canonical headings not exactly L1-L6 in order: {ids}')
+        if 'DietrichGebert/ponytail' not in canon:
+            errors.append('Ponytail source missing in canon')
+        if '.agents/skills/kiss-ponytail/SKILL.md' in canon:
+            errors.append('canon refers to obsolete kiss-ponytail skill')
+
+    agents = texts.get('AGENTS.md', '')
+    for path in (CANON, SKILL):
+        if agents and path not in agents:
+            errors.append(f'AGENTS missing reference to {path}')
+
+    skill = texts.get(SKILL, '')
+    if skill and not re.match(r'\A---\n(?:(?!\n---\n)[\s\S])*\n---\n', skill):
+        errors.append('skill YAML frontmatter missing or unterminated')
+    elif skill and not re.search(r'(?m)^name:\s*pingponglaw\s*$', skill):
+        errors.append('skill name does not match pingponglaw')
+
+    readme = texts.get('README.md', '')
+    for path in (CANON, 'docs/CHATGPT_START.md', 'docs/CODEX_INSTALL.md', 'docs/ROADMAP_FASES.md'):
+        if readme and f']({path})' not in readme:
+            errors.append(f'README missing clickable local link: {path}')
+
+    for path, contents in texts.items():
+        if not path.endswith('.md'):
+            continue
+        for match in LINK.finditer(without_code_fences(contents)):
+            dest = match.group(1).strip().split(' ', 1)[0].strip('<>')
+            if not dest or dest.startswith(('#', '/', 'mailto:')) or '://' in dest:
+                continue
+            filepart = dest.split('#', 1)[0].split('?', 1)[0]
+            if not filepart:
+                continue
+            target = ((root / path).parent / filepart).resolve()
+            if target != root and root not in target.parents:
+                errors.append(f'link escapes repo in {path}: {dest}')
+            elif not target.exists():
+                errors.append(f'broken relative link in {path}: {dest}')
+    return errors
+
+
+def main():
+    errors = check()
+    for error in errors:
+        print('FAIL:', error, file=sys.stderr)
     if errors:
-        for message in errors:
-            print('FAIL:', message, file=sys.stderr)
         return 1
-    print('PASS: 6 laws and PingPongLaw entrypoints structurally intact')
-    print('NOTE: Does NOT prove Codex loaded instructions or plugin hooks are active')
+    print('PASS: Six laws, skill, entrypoint paths and Markdown local links')
+    print('LIMIT: Does not prove semantic compliance, hooks, installation or runtime')
     return 0
+
 
 if __name__ == '__main__':
     raise SystemExit(main())

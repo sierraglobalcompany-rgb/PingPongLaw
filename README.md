@@ -13,6 +13,16 @@
 
 **Estado de la instalación:** este repositorio aloja instrucciones y documentación; la presencia de archivos no prueba instalación del plugin ni aceptación de hooks en el PC. No realizar auditorías globales por costumbre.
 
+## Accesos directos y puesta en marcha
+
+- [Canon completo L1–L6](docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md)
+- [Inicio rápido para ChatGPT](docs/CHATGPT_START.md)
+- [Instalación del plugin oficial para Codex](docs/CODEX_INSTALL.md)
+- [Plan de fases, verificaciones y dependencias](docs/ROADMAP_FASES.md)
+- [Piloto y pruebas de carga del canon](docs/VALIDACION_OPERATIVA.md)
+
+**Modo por defecto:** aplicar las seis leyes como criterio de trabajo sin ejecutar auditorías adicionales de oficio. El canon se debe leer efectivamente en la sesión; enlazar GitHub no equivale a inyección automática. Las comprobaciones CI validan documentación, no que el plugin esté instalado ni que un proyecto funcione.
+
 ## Cómo usarlo
 
 - **ChatGPT:** abrir este repositorio, consultar `docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md` y seguir `docs/CHATGPT_START.md` antes de proponer implementación o delegación.
