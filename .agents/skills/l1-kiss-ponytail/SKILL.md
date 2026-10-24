@@ -3,7 +3,7 @@ name: l1-kiss-ponytail
 description: Ley 1 KISS + Ponytail. Usar al implementar, refactorizar, elegir dependencias o simplificar arquitectura; solo auditar un repositorio entero ante solicitud explícita o riesgo sistémico.
 ---
 # L1 — KISS + Ponytail
-**Fuente vinculante:** ../../../../docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (sección L1). Esta skill aplica la ley, no la duplica.
+**Fuente vinculante:** docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md (sección L1). Esta skill aplica la ley, no la duplica.
 
 ## Preguntas previas
 1. ¿Esto necesita existir o está fuera del contrato aprobado?
