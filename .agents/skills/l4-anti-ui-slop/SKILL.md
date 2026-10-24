@@ -2,6 +2,8 @@
 name: l4-anti-ui-slop
 description: Adaptador de Anti UI Slop para diseñar o auditar UI humana con evidencia observable. Activar solo en tareas visuales que requieran revisar jerarquía, estados, flujo o apariencia genérica.
 ---
+**Canon vinculante:** `docs/engineering/LEYES_IMPLEMENTACION_1_A_6.md` (sección L4); la fuente externa es complementaria.
+
 # L4A — Anti UI Slop (fuente externa; adaptación, no instalación upstream)
 **Origen:** `github/awesome-copilot@d85f762d6e521abf5fe16703946e9b38adc42da7`, `skills/anti-ui-slop/SKILL.md` y `reference/audit.md`.
 **Condición:** el repositorio externo mantiene metadatos de licencia heterogéneos (frontmatter SKILL: MIT; archivo de distribución LICENSE y MANIFEST: Apache-2.0). No copiar/republicar contenido upstream hasta aclarar distribución y avisos. Esta skill contiene instrucciones originales de integración.
