@@ -1,6 +1,6 @@
 # PingPongLaw — Plan maestro de implementación por fases (V2)
 
-**Fuente del estado:** repositorio real, no este texto por sí solo. **BASE_AUDITADA:** `main@9fefcf72f1629af116c3b759202d930c0ada8840`. La rama de mejora de esta auditoría añade pruebas y documentación; **no equivale a una instalación del plugin Codex**.
+**Fuente del estado:** repositorio real, no este texto por sí solo. **BASE_AUDITADA:** `main@9fefcf72f1629af116c3b759202d930c0ada8840`. La corrección F1.1 fue integrada a `main` y comprobada con CI; **no equivale a una instalación del plugin Codex**.
 
 ## Resultado final buscado
 
@@ -11,8 +11,8 @@ Un **canon único, ligero y verificable** de seis leyes, con L1 KISS + Ponytail,
 | Fase | Responsable prioritario | Producto verificable | Gate de salida | Estado |
 |---|---|---|---|---|
 | **F0. Investigación y procedencia** | ChatGPT | Ponytail fuente/licencia/SHA, comparación con leyes, límites de hooks y benchmark | G0: hechos respaldados, riesgos explícitos | **HECHO, revisión selectiva** |
-| **F1. Canon central** | ChatGPT | README, AGENTS, seis leyes, skill, guías | G1: en main, seis leyes en orden y referencias correctas | **HECHO EN BASE**; mejora de pruebas en revisión |
-| **F1.1. Endurecimiento focal** | ChatGPT | Eliminar referencias obsoletas, corregir CI, pruebas negativas y links, actualizar plan | G1.1: tests focales + CI mismo HEAD; PR revisable | **EN ESTA RAMA** hasta verificación |
+| **F1. Canon central** | ChatGPT | README, AGENTS, seis leyes, skill, guías | G1: en main, seis leyes en orden y referencias correctas | **HECHO EN MAIN** |
+| **F1.1. Endurecimiento focal** | ChatGPT | Eliminar referencias obsoletas, corregir CI, pruebas negativas y links, actualizar plan | G1.1: tests focales + CI mismo HEAD; PR revisable | **HECHO EN MAIN** (CI de PR y main aprobado) |
 | **F2. Piloto ChatGPT real** | ChatGPT | Evidencia de lectura del canon exacto y 3 casos de uso (prompt, implementación focal, entrega) | G2: mostrar consulta real, decisiones técnicas, límites y pruebas sin ciclos extra | **PENDIENTE COMO CONJUNTO** |
 | **F3. Codex Windows / Ponytail oficial** | Codex local; ChatGPT dirige | Inventario CLI/Node; plugin oficial y skills; revisión explícita de hooks; prueba de sesión limpia | G3: versión instalada, lectura de L1–L6, hooks autorizados/NO_CONFIADOS de forma explícita, informe MD/ZIP si procede | **NO VERIFICADO: no hay acceso al PC** |
 | **F4. Piloto downstream** | ChatGPT + Codex si hace falta | 1 proyecto con canon y normas específicas reconciliadas; prueba de cambio real acotado | G4: lectura aplicable, cambio funcional probado, Ley 5, sin suprimir AGENTS previos | **PENDIENTE** |
@@ -56,4 +56,4 @@ Un **canon único, ligero y verificable** de seis leyes, con L1 KISS + Ponytail,
 
 ## NEXT
 
-**Cerrar G1.1:** confirmar CI y pruebas en el SHA de esta rama. Después **F2**: piloto de lectura/uso del canon con ChatGPT, sin crear otra auditoría forense. F3 queda disponible en paralelo cuando haya Codex local autorizado.
+**G1.1 documental cerrado** con pruebas y CI en main. **NEXT: F2**, completar los tres casos de uso de ChatGPT según `docs/VALIDACION_OPERATIVA.md`. F3 puede avanzar en paralelo cuando exista Codex local autorizado. No crear otra auditoría forense antes de ese piloto.
